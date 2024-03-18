@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ChatInterface, MessageInterface, TextContentInterface } from '@type/chat';
 import { getChatCompletion, getChatCompletionStream } from '@api/api';
 import { parseEventSource } from '@api/helper';
-import { limitMessageTokens, updateTotalTokenUsed } from '@utils/messageUtils';
+import { countTokens, limitMessageTokens, updateTotalTokenUsed } from '@utils/messageUtils';
 import { _defaultChatConfig } from '@constants/chat';
 import { officialAPIEndpoint } from '@constants/auth';
 
@@ -79,7 +79,11 @@ const useSubmit = () => {
         chats[currentChatIndex].config.model
       );
       if (messages.length === 0) throw new Error('Message exceed max token!');
-
+      const totalTokens = countTokens(messages, chats[currentChatIndex].config.model);
+      chats[currentChatIndex].config.max_tokens -= totalTokens;
+      if (chats[currentChatIndex].config.max_tokens < 0) {
+        throw new Error('Exceed max token!');
+      }
       // no api key (free)
       if (!apiKey || apiKey.length === 0) {
         // official endpoint

@@ -97,7 +97,9 @@ export const getChatCompletionStream = async (
       endpoint += path;
     }
   }
-
+  if(config.max_tokens > 4096){
+    config.max_tokens = 4096;
+  }
   const response = await fetch(endpoint, {
     method: 'POST',
     headers,

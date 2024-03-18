@@ -243,7 +243,7 @@ const EditViewButtons = memo(
     const { t } = useTranslation();
     const generating = useStore.getState().generating;
     const advancedMode = useStore((state) => state.advancedMode);
-    const model = useStore((state) => state.chats![state.currentChatIndex].config.model);
+    const model = useStore((state) => state.currentChatIndex != -1 ? state.chats![state.currentChatIndex].config.model : 'gpt-4-0125-preview');
     const fileInputRef = useRef(null);
 
     const handleUploadButtonClick = () => {
