@@ -20,11 +20,10 @@ Respond using Markdown.`;
 export const modelOptions: ModelOptions[] = [
   'gpt-3.5-turbo',
   'gpt-3.5-turbo-16k',
-  'gpt-3.5-turbo-1106',
   'gpt-3.5-turbo-0125',
   'gpt-4',
-  'gpt-4-32k',
-  'gpt-4-1106-preview',
+  'gpt-4-0125-preview',
+  'gpt-4-turbo-preview',
   'gpt-4-vision-preview'
   // 'gpt-3.5-turbo-0301',
   // 'gpt-4-0314',
@@ -49,6 +48,7 @@ export const modelMaxToken = {
   'gpt-4-32k-0613': 32768,
   'gpt-4-1106-preview': 128000,
   'gpt-4-0125-preview': 128000,
+  'gpt-4-turbo-preview': 128000,
   'gpt-4-vision-preview': 128000
 };
 
@@ -113,6 +113,10 @@ export const modelCost = {
     prompt: { price: 0.01, unit: 1000 },
     completion: { price: 0.03, unit: 1000 },
   },
+  'gpt-4-turbo-preview': {
+    prompt: { price: 0.01, unit: 1000 },
+    completion: { price: 0.03, unit: 1000 },
+  },
   'gpt-4-vision-preview': {
     prompt: { price: 0.01, unit: 1000 },
     completion: { price: 0.03, unit: 1000 },
@@ -133,6 +137,7 @@ export const modelTypes: ModelTypes = {
   'gpt-4-32k': 'text',
   'gpt-4-1106-preview': 'text',
   'gpt-4-0125-preview': 'text',
+  'gpt-4-turbo-preview': 'text',
   'gpt-4-vision-preview': 'image'
 };
 
